@@ -2,6 +2,7 @@ import './App.css';
 import Button from './Components/Button';
 import styled from 'styled-components'
 import StartPage from './Pages/StartPage';
+import QuizPage from './Pages/QuizPage';
 
 const MainContainer = styled.div`
   background: #151616;
@@ -21,7 +22,8 @@ const MainContainer = styled.div`
 function App() {
   return (
     <MainContainer>
-      <StartPage/>
+      {/* <StartPage/> */}
+      <QuizPage/>
     </MainContainer>
   );
 }
