@@ -7,3 +7,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+p{
+  padding:0px;
+}
+::-webkit-input-placeholder { /* Edge */
+  color:#9A9999;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color:#9A9999;
+}
+
+::placeholder {
+  color:#9A9999;
+}
