@@ -1,6 +1,11 @@
-import React from 'react'
-import Button from '../Components/Button'
+import React, { useState, useEffect } from 'react'
+// import Button from '../Components/Button'
 import styled from 'styled-components'
+import { Route, Routes, Link } from "react-router-dom"
+import { validateEmail } from '../Utils/utils';
+import { useSelector, useDispatch } from 'react-redux';
+import { setTestActive, setUserEmail } from '../State/quizSlice';
+import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
     background: #151616;
@@ -42,13 +47,35 @@ const MainFontMeidum = styled.p`
 `
 
 function StartPage() {
+  const [email, setEmail] = useState("")
+  const [isEmailValid, setIsEmailValid] = useState("")
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    setIsEmailValid(validateEmail(email))
+  }, [email])
+
+  const startTest=()=>{
+    dispatch(setUserEmail(email))
+    dispatch(setTestActive(true))
+    console.log("inside startTestFUnction")
+    navigate("/quiz");
+  }
   return (
     <Container>
-        <ModalTest>
-            <MainFontMeidum>Enter email to start 👇</MainFontMeidum>
-            <InputBox placeholder='enter email'/>
-            <Button/>
-        </ModalTest>
+      <ModalTest>
+        <MainFontMeidum>Enter email to start 👇</MainFontMeidum>
+        <InputBox onChange={(e) => { setEmail(e.target.value) }} placeholder='enter email' /> {isEmailValid ? <p style={{ color: 'lightgreen', paddingLeft: 10 }}>Email is correct ✅</p> : <span></span>}
+        {/* <Link to='/quiz'> */}
+          {
+            isEmailValid ?
+              <button onClick={startTest} >get</button>
+              : null
+          }
+        {/* </Link> */}
+      </ModalTest>
     </Container>
   )
 }

@@ -3,6 +3,9 @@ import Button from './Components/Button';
 import styled from 'styled-components'
 import StartPage from './Pages/StartPage';
 import QuizPage from './Pages/QuizPage';
+import ResultPage from './Pages/ResultPage';
+import { BrowserRouter } from "react-router-dom"
+import { Route, Routes, Link } from "react-router-dom"
 
 const MainContainer = styled.div`
   background: #151616;
@@ -22,8 +25,13 @@ const MainContainer = styled.div`
 function App() {
   return (
     <MainContainer>
-      {/* <StartPage/> */}
-      <QuizPage/>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<StartPage />} />
+          <Route path="/quiz" element={<QuizPage />} />
+          <Route path="/result" element={<ResultPage />} />
+        </Routes>
+      </BrowserRouter>
     </MainContainer>
   );
 }
