@@ -46,7 +46,7 @@ function Navbar() {
     return (
         <Container>
             <p style={{ color: 'white', fontWeight: 600, fontSize:18, color: "white" }}>Current User: {userEmail}<span style={{ fontSize: 20 }}>👋</span> !!!</p>
-            <p style={{ color: 'white' }}>Time Remaining  {seconds}</p>
+            <p style={{ color: 'white' }}>Time Remaining  30 Minutes </p>
             <div style={{ display: 'flex' }}>
             {/* <Link to="/result"> */}
                 <Submit onClick={submitTest}>Submit Test</Submit>
