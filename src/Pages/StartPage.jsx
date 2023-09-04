@@ -57,7 +57,7 @@ function StartPage() {
     setIsEmailValid(validateEmail(email))
   }, [email])
 
-  const startTest=()=>{
+  const startTest = () => {
     dispatch(setUserEmail(email))
     dispatch(setTestActive(true))
     console.log("inside startTestFUnction")
@@ -69,11 +69,11 @@ function StartPage() {
         <MainFontMeidum>Enter email to start 👇</MainFontMeidum>
         <InputBox onChange={(e) => { setEmail(e.target.value) }} placeholder='enter email' /> {isEmailValid ? <p style={{ color: 'lightgreen', paddingLeft: 10 }}>Email is correct ✅</p> : <span></span>}
         {/* <Link to='/quiz'> */}
-          {
-            isEmailValid ?
-              <button onClick={startTest} >get</button>
-              : null
-          }
+        {
+          isEmailValid ?
+            <button style={{ padding: '1em 2.5em', borderRadius: 20, border: 'none', color: '#999', background: '#111' }} onClick={startTest} >Start Test</button>
+            : null
+        }
         {/* </Link> */}
       </ModalTest>
     </Container>

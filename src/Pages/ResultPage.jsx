@@ -10,16 +10,16 @@ function ResultPage() {
     console.log("filtered answer", filteredResult)
 
     return (
-        <div style={{height:'auto',background:'#151616'}}>
-            <br/>
-            <h1 style={{margin:0,color:'white'}}>Result: {filteredResult.length}/15</h1>
-            <br/>
-            <br/>
+        <div style={{ height: 'auto', background: '#151616' }}>
+            <br />
+            <h1 style={{ margin: 0, color: 'white' }}>Result: {filteredResult.length}/15</h1>
+            <br />
+            <br />
             {
                 questionSet.map((que, index) => (
                     <>
-                    <p  style={{margin:0,color:'white'}}>Que: {index+1} ----{que.question}</p>
-                    <p style={{margin:0,color:'white'}}>Selected Answer:{que.selectedAnswer}<br/> Correct Answer: {que.correct_answer} {(que.selectedAnswer===que.correct_answer)?"✅":"❌"}<br/><br/></p>
+                        <p style={{ margin: 0, color: 'white' }}>Que: {index + 1} ----{que.question}</p>
+                        <p style={{ margin: 0, color: 'white' }}>Selected Answer:{que.selectedAnswer}<br /> Correct Answer: {que.correct_answer} {(que.selectedAnswer === que.correct_answer) ? "✅" : "❌"}<br /><br /></p>
                     </>
                 )
                 )

@@ -77,9 +77,9 @@ const Next = styled.div`
 
 function QuizPage() {
     // const [question, setQuestion] = useState([]);
-    const [currentQuestion,setCurrentQuestion]=useState('')
+    const [currentQuestion, setCurrentQuestion] = useState('')
     const dispatch = useDispatch()
-    const [options,setOptions]= useState([])
+    const [options, setOptions] = useState([])
     const navigate = useNavigate();
 
 
@@ -97,34 +97,34 @@ function QuizPage() {
     }
     useEffect(() => {
         // const currentEmail = useSelector(state => state.counter.currentEmail);
-        if(testActive===false){
+        if (testActive === false) {
             navigate("/")
         }
         fetchQuestions()
         // retriveQuestions()
     }, [])
 
-    
+
 
     const questionSet = useSelector(state => state.counter.questions);
     const currentQuestionNumber = useSelector(state => state.counter.currentQuestion)
     const state = useSelector(state => console.log(state))
     const visited = useSelector(state => state.counter.visited)
     console.log("dhjkadghjdgskjdgas", visited)
-    const retriveAnswers=()=>{
+    const retriveAnswers = () => {
         console.log("start")
-        if(questionSet.length>0) {
+        if (questionSet.length > 0) {
             console.log("went inside")
-            let answers=[]
-            let answer = questionSet[currentQuestionNumber-1].incorrect_answers
+            let answers = []
+            let answer = questionSet[currentQuestionNumber - 1].incorrect_answers
             // console.log("answer.correct_answers",answer)
-            let correctAnswer = questionSet[currentQuestionNumber-1].correct_answer;
-            let newArray=[...answer,correctAnswer]
+            let correctAnswer = questionSet[currentQuestionNumber - 1].correct_answer;
+            let newArray = [...answer, correctAnswer]
             // console.log("67253767351",typeof(correctAnswer),correctAnswer,answer)
             // answer.push("hhu")
-            console.log("67253767351",newArray)
+            console.log("67253767351", newArray)
             const finalAnswers = newArray.sort(() => Math.random() - 1.5)
-            console.log("final answers----",finalAnswers)
+            console.log("final answers----", finalAnswers)
             setOptions(finalAnswers)
             // console.log("answer.correct_answers",correctAnswer)
             // answer.push(correctAnswer)
@@ -132,25 +132,25 @@ function QuizPage() {
             // answers.append(questionSet[currentQuestionNumber-1].correct_answers)
             // console.log("answers",answers)
         }
-          
+
     }
-    useEffect(()=>{
+    useEffect(() => {
         console.log("useEffect to fecth questions")
         retriveAnswers()
-    },[currentQuestionNumber,state])
+    }, [currentQuestionNumber, state])
 
 
-        
-    const setCurrentQuestionNumber = (number)=>{
-        console.log("function inside",number)
+
+    const setCurrentQuestionNumber = (number) => {
+        console.log("function inside", number)
         dispatch(setCurrentQuestionNumber(number))
     }
-    const goToNextQuestion =(number)=>{
+    const goToNextQuestion = (number) => {
         // if(currentQuestionNumber)
         dispatch(nextQuestion())
     }
 
-    const goToPrevQuestion =(number)=>{
+    const goToPrevQuestion = (number) => {
         // if(currentQuestionNumber)
         dispatch(prevQuestion())
     }
@@ -159,20 +159,20 @@ function QuizPage() {
     return (
         <Container>
             <Navbar />
-            <div style={{background:'rgb(255,50,0)',padding:'5px 0px',color:'white',textAlign:'center'}}> ⚠️⚠️⚠️⚠️ Dont refresh the window, go back 'or' close the tab,doing this will end your test ⚠️⚠️⚠️</div>
+            <div style={{ background: 'rgb(255,50,0)', padding: '5px 0px', color: 'white', textAlign: 'center' }}> ⚠️⚠️⚠️⚠️ Dont refresh the window, go back 'or' close the tab,doing this will end your test ⚠️⚠️⚠️</div>
             <QuizWrapper>
                 <QuestionDashboard>
                     <p style={{ fontSize: 24, fontWeight: 600 }}>Questions: </p>
                     <div style={{ background: '', display: 'flex', justifyContent: 'start', flexWrap: 'wrap' }}>
                         {
                             questionSet && questionSet.map((que, index) => (
-                                <QuestionCircle   key={index} number={index} />
+                                <QuestionCircle key={index} number={index} />
                             ))
 
                         }
                     </div>
-                    <p>Visited:  <span style={{background: 'blue',marginLeft:10,padding:'5px 15px',borderRadius:20}}></span></p>
-                    <p>Attempted:  <span style={{background: 'white',borderRadius:'2px solid black',marginLeft:10,padding:'5px 15px',borderRadius:20}}></span></p>
+                    <p>Visited:  <span style={{ background: '#D7C049', marginLeft: 10, padding: '5px 15px', borderRadius: 20 }}></span></p>
+                    <p>Attempted:  <span style={{ background: 'white', borderRadius: '2px solid black', marginLeft: 10, padding: '5px 15px', borderRadius: 20 }}></span></p>
                 </QuestionDashboard>
                 <Question>
                     <div>
@@ -180,22 +180,22 @@ function QuizPage() {
                             Question no. {currentQuestionNumber}
                         </p>
                         <p style={{ fontSize: 30, margin: 0 }}>
-                            {questionSet.length>0 && questionSet[currentQuestionNumber - 1].question}
+                            {questionSet.length > 0 && questionSet[currentQuestionNumber - 1].question}
                             {/* {question && question[currentQuestion].question} */}
                         </p>
                         <br />
                         {
-                            options.length>0 && options.map((option)=>(
+                            options.length > 0 && options.map((option) => (
                                 <SelectOption currentQuestionNumber={currentQuestionNumber} key={option} value={option} />
                             ))
                         }
-                        
-                       
+
+
                         <div style={{ display: 'flex' }}>
-                            {(currentQuestionNumber===1)?"":<Prev onClick={()=>{goToPrevQuestion()}}>Prev</Prev>}
-                            {(currentQuestionNumber===15)?"":<Next onClick={()=>{goToNextQuestion()}}>Next</Next>}
+                            {(currentQuestionNumber === 1) ? "" : <Prev onClick={() => { goToPrevQuestion() }}>Prev</Prev>}
+                            {(currentQuestionNumber === 15) ? "" : <Next onClick={() => { goToNextQuestion() }}>Next</Next>}
                         </div>
-                        
+
                     </div>
                 </Question>
             </QuizWrapper>

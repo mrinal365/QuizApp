@@ -13,7 +13,7 @@ function QuestionCircle(props) {
             {
                 (state === "visited") ?(
                     !selectedAnswer?
-                    <div onClick={() => { dispatch(changeQuestion(props.number + 1)); console.log("clicked----", props.number) }} style={{ cursor: 'pointer', background: `blue`, border: '2px solid rgb(189,255,1)', width: 'fit-content', padding: '14px 16px', borderRadius: 25, marginBottom: 20, marginRight: 17.5 }}>
+                    <div onClick={() => { dispatch(changeQuestion(props.number + 1)); console.log("clicked----", props.number) }} style={{ cursor: 'pointer', background: `#D7C049`, border: '2px solid rgb(189,255,1)', width: 'fit-content', padding: '14px 16px', borderRadius: 25, marginBottom: 20, marginRight: 17.5 }}>
                         <p style={{ margin: 0 }}>{`${(props.number < 9) ? "0" : ""}${props.number + 1}`}</p>
                     </div>:
                     <div onClick={() => { dispatch(changeQuestion(props.number + 1)); console.log("clicked----", props.number) }} style={{ cursor: 'pointer', background: `white`, border: '2px solid rgb(189,255,1)', width: 'fit-content', padding: '14px 16px', borderRadius: 25, marginBottom: 20, marginRight: 17.5 }}>
